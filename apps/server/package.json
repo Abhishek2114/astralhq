@@ -13,9 +13,7 @@
     "db:studio": "prisma studio",
     "db:reset": "prisma migrate reset --force",
     "setup:local": "cp .env.sqlite .env && mkdir -p data && prisma generate --schema=prisma/schema.sqlite.prisma && rm -f data/dev.db prisma/dev.db prisma/prisma/dev.db && prisma db push --schema=prisma/schema.sqlite.prisma && chmod 664 data/dev.db 2>/dev/null; chmod 775 data 2>/dev/null; node prisma/seed.js",
-    "dev:local": "npm run dev",
-    "postinstall": "prisma generate --schema=prisma/schema.sqlite.prisma",
-    "postinstall:pg": "prisma generate"
+    "dev:local": "npm run dev"
   },
   "prisma": {
     "seed": "node prisma/seed.js"
