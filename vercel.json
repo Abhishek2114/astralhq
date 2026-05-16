@@ -3,15 +3,8 @@
   "installCommand": "npm install && npm install -w @astralhq/client && npm run db:generate -w @astralhq/server",
   "buildCommand": "npm run build -w @astralhq/client",
   "outputDirectory": "apps/client/dist",
-  "functions": {
-    "api/index.js": {
-      "runtime": "nodejs20.x",
-      "maxDuration": 10
-    }
-  },
-  "routes": [
-    { "src": "/api/(.*)", "dest": "/api" },
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "dest": "/index.html" }
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
