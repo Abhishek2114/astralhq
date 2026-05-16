@@ -11,7 +11,9 @@ function notFoundHandler(_req, res) {
 function errorHandler(err, _req, res, _next) {
   const statusCode = err.statusCode || 500;
   const code = err.code || "INTERNAL_ERROR";
-  const message = err.isOperational ? err.message : "Internal server error";
+  const message = err.isOperational ? err.message : err.message || "Internal server error";
+  // Temporary: log full error for debugging
+  console.error("ERROR_HANDLER:", err.message, err.stack);
 
   if (!err.isOperational) {
     logger.error(err.message, { stack: err.stack, code });
