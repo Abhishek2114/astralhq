@@ -10,7 +10,7 @@ function applySecurityMiddleware(app) {
   app.use(helmet());
   app.use(
     cors({
-      origin: env.isProduction ? env.corsOrigins : env.corsOrigin,
+      origin: env.corsOrigins,
       credentials: true,
     })
   );

@@ -10,11 +10,11 @@ export function Button({
 }) {
   const variants = {
     primary:
-      "bg-cyan text-bg font-semibold hover:shadow-[0_0_24px_rgba(0,229,255,0.4)] disabled:opacity-50",
+      "bg-cyan text-bg/90 font-bold hover:shadow-[0_0_30px_rgba(0,229,255,0.6)] hover:-translate-y-0.5 disabled:opacity-50 disabled:shadow-none",
     secondary:
-      "glass text-text hover:border-cyan/30 glow-cyan-hover",
-    ghost: "text-muted hover:text-cyan hover:bg-cyan/5",
-    danger: "bg-danger/20 text-danger hover:bg-danger/30",
+      "glass text-text/90 hover:border-cyan/50 glow-cyan-hover",
+    ghost: "text-text/70 hover:text-cyan hover:bg-cyan/15",
+    danger: "bg-danger/20 text-danger/90 hover:bg-danger/30",
   };
   const sizes = {
     sm: "px-3 py-1.5 text-sm",

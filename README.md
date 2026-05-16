@@ -41,7 +41,7 @@ astralhq/
 ### Prerequisites
 
 - Node.js 20+
-- Docker (for local PostgreSQL)
+- Docker (optional, for local PostgreSQL)
 
 ### 1. Clone & install
 
@@ -53,19 +53,29 @@ npm install
 ### 2. Environment
 
 ```bash
-cp apps/server/.env.example apps/server/.env
 cp apps/client/.env.example apps/client/.env
 ```
 
-Edit `apps/server/.env` — set `JWT_ACCESS_SECRET` and `JWT_REFRESH_SECRET` (32+ chars each).
+### 3. Database (choose one)
 
-### 3. Database
+#### Option A — Local SQLite (recommended)
 
 ```bash
+npm run setup:local
+```
+
+This creates `apps/server/data/dev.db`, seeds demo data, and configures the API to use SQLite.
+
+#### Option B — Postgres via Docker
+
+```bash
+cp apps/server/.env.example apps/server/.env
 npm run docker:up
 npm run db:deploy
 npm run db:seed
 ```
+
+Edit `apps/server/.env` — set `JWT_ACCESS_SECRET` and `JWT_REFRESH_SECRET` (32+ chars each).
 
 ### 4. Run
 
@@ -97,6 +107,8 @@ npm run dev
 | `CORS_ORIGIN` | Frontend URL(s), comma-separated in prod |
 | `COOKIE_SECURE` | `true` in production (HTTPS) |
 | `PORT` | API port (default `3000`) |
+
+For local SQLite dev, the server uses `apps/server/.env.sqlite`, which is copied automatically when you run `npm run dev` or `npm run setup:local`.
 
 ### Client (`apps/client/.env`)
 
@@ -176,6 +188,34 @@ Base URL: `/api`
 
 See `railway.json` and per-app `railway.toml` for reference configs.
 
+## Vercel Deployment (Full Stack)
+
+This repo can be deployed as a single Vercel project. The API runs as a serverless
+function under `/api`, and the client is served from the Vite build output.
+
+1. Create a new Vercel project and import this repository.
+2. Vercel will use [vercel.json](vercel.json) to build the Vite client and route
+   `/api/*` to the Express app.
+3. Set these environment variables in Vercel (Production + Preview):
+   - `DATABASE_URL`
+   - `JWT_ACCESS_SECRET`
+   - `JWT_REFRESH_SECRET`
+   - `CORS_ORIGIN` = your Vercel app URL (comma-separated allowed)
+   - `COOKIE_SECURE` = `true`
+4. Optional: set `VITE_API_URL` to empty (or omit it) to use same-origin `/api`.
+5. Run migrations against your database: `npx prisma migrate deploy`.
+6. Deploy the project.
+
+Note: Socket.IO is not supported on Vercel serverless functions. If you need
+real-time sockets, host the API elsewhere.
+
+### Railway Database (PostgreSQL)
+
+1. Create a Railway project and add a **PostgreSQL** plugin.
+2. Copy the `DATABASE_URL` from Railway.
+3. Paste it into your Vercel project env vars (Production + Preview).
+4. Run `npx prisma migrate deploy` against the Railway database.
+
 ## Scripts
 
 | Command | Description |
@@ -184,6 +224,7 @@ See `railway.json` and per-app `railway.toml` for reference configs.
 | `npm run build` | Build client for production |
 | `npm run db:migrate` | Dev migrations |
 | `npm run db:seed` | Seed demo data |
+| `npm run setup:local` | Set up SQLite dev database with seed data |
 | `make docker-up` | Start local Postgres |
 
 ## License

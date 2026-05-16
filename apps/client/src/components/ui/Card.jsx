@@ -9,7 +9,7 @@ export function Card({ children, className, hover = false, ...props }) {
 
   return (
     <Comp
-      className={cn("glass rounded-xl p-5 glow-cyan-hover transition-colors", className)}
+      className={cn("glass rounded-xl p-6 glow-cyan-hover transition-all border border-cyan/10", className)}
       {...motionProps}
       {...props}
     >
