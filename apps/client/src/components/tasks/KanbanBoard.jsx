@@ -18,7 +18,7 @@ import { motion } from "framer-motion";
 import { GripVertical, Calendar } from "lucide-react";
 import { KANBAN_COLUMNS, cn, formatDate, PRIORITY_COLORS } from "../../lib/utils";
 import { Badge } from "../ui/Badge";
-import { tasksApi } from "../../lib/api";
+import { workItemsApi } from "../../lib/api";
 import { useToast } from "../../hooks/useToast";
 
 function TaskCard({ task, isDragging }) {
@@ -44,7 +44,7 @@ function TaskCard({ task, isDragging }) {
         <div className="min-w-0 flex-1">
           <p className="text-sm font-medium text-text">{task.title}</p>
           <div className="mt-2 flex flex-wrap items-center gap-2">
-            <Badge className={PRIORITY_COLORS[task.priority]}>{task.priority}</Badge>
+            {task.priority && <Badge className={PRIORITY_COLORS[task.priority]}>{task.priority}</Badge>}
             {task.dueDate && (
               <span className="flex items-center gap-1 text-xs text-muted">
                 <Calendar size={12} />
@@ -52,12 +52,12 @@ function TaskCard({ task, isDragging }) {
               </span>
             )}
           </div>
-          {task.assignee && (
+          {task.user && (
             <img
-              src={task.assignee.avatar}
+              src={task.user.avatar || `https://ui-avatars.com/api/?name=${task.user.name}&background=random`}
               alt=""
               className="mt-2 h-6 w-6 rounded-full border border-cyan/20"
-              title={task.assignee.name}
+              title={task.user.name}
             />
           )}
         </div>
@@ -77,7 +77,7 @@ export function KanbanBoard({ tasks, onUpdate }) {
   const byColumn = KANBAN_COLUMNS.reduce((acc, col) => {
     acc[col.id] = tasks
       .filter((t) => t.status === col.id)
-      .sort((a, b) => a.order - b.order);
+      .sort((a, b) => (a.order || 0) - (b.order || 0));
     return acc;
   }, {});
 
@@ -87,21 +87,16 @@ export function KanbanBoard({ tasks, onUpdate }) {
     if (!over) return;
 
     const task = tasks.find((t) => t.id === active.id);
-    const newStatus = over.id.length > 10 ? task.status : over.id;
-    const columnTasks = byColumn[newStatus] || [];
-    const newOrder = columnTasks.length;
+    const newStatus = over.id.length > 15 ? task.status : over.id;
 
-    if (task.status === newStatus && task.order === newOrder) return;
+    if (task.status === newStatus) return;
 
     try {
-      await tasksApi.update(task.id, { status: newStatus, order: newOrder });
-      await tasksApi.reorder({
-        updates: [{ id: task.id, status: newStatus, order: newOrder }],
-      });
+      await workItemsApi.updateStatus(task.id, newStatus);
       onUpdate();
-      toast("Task moved", "success");
+      toast("Task status updated", "success");
     } catch {
-      toast("Failed to move task", "error");
+      toast("Failed to update task", "error");
     }
   };
 

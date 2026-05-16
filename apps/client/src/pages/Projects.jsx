@@ -93,15 +93,11 @@ export default function Projects() {
               <Link to={`/projects/${p.id}`}>
                 <Card hover className="h-full">
                   <div className="flex items-start justify-between">
-                    <Badge>{p.status}</Badge>
-                    <span className="text-xs text-cyan">{p.progress}%</span>
+                    <Badge>{p.lifecycle}</Badge>
                   </div>
                   <h3 className="mt-3 font-display text-lg font-semibold">{p.title}</h3>
-                  <p className="mt-2 line-clamp-2 text-sm text-muted">{p.description}</p>
-                  <div className="mt-4 h-1.5 overflow-hidden rounded-full bg-surface">
-                    <div className="h-full bg-gradient-to-r from-cyan to-purple" style={{ width: `${p.progress}%` }} />
-                  </div>
-                  <p className="mt-3 text-xs text-muted">{p.taskCount} tasks · {p.members?.length || 0} crew</p>
+                  <p className="mt-2 line-clamp-2 text-sm text-muted">{p.category}</p>
+                  <p className="mt-3 text-xs text-muted">{p.taskCount} tasks</p>
                 </Card>
               </Link>
             </motion.div>

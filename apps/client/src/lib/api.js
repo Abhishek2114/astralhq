@@ -55,6 +55,7 @@ export const authApi = {
 export const dashboardApi = { stats: () => api.get("/dashboard/stats") };
 export const projectsApi = {
   list: () => api.get("/projects"),
+  create: (data) => api.post("/projects", data),
   flag: (id, note) => api.post(`/projects/${id}/flag`, { note }),
   request: (data) => api.post("/projects/request", data),
 };
@@ -75,6 +76,9 @@ export const notificationsApi = {
 };
 export const workItemsApi = {
   list: (params) => api.get("/work-items", { params }),
+  listByProject: (projectId) => api.get(`/work-items/project/${projectId}`),
+  create: (data) => api.post("/work-items", data),
+  updateStatus: (id, status) => api.patch(`/work-items/${id}/status`, { status }),
   review: (id, data) => api.patch(`/work-items/${id}/review`, data),
 };
 export const inboxApi = { get: () => api.get("/inbox") };

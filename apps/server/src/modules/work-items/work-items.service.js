@@ -75,4 +75,59 @@ async function reviewItem(id, user, { qualityScore, reviewComment }) {
   return updated;
 }
 
-module.exports = { listForReview, reviewItem };
+async function listByProject(projectId) {
+  return prisma.workItem.findMany({
+    where: { projectId },
+    include: {
+      user: { select: { id: true, name: true, avatar: true } },
+    },
+    orderBy: { createdAt: "desc" },
+  });
+}
+
+async function createItem(user, data) {
+  return prisma.workItem.create({
+    data: {
+      title: data.title,
+      projectId: data.projectId || null,
+      userId: data.assignTo || user.id,
+      status: "PENDING",
+    },
+    include: {
+      user: { select: { id: true, name: true, avatar: true } },
+    },
+  });
+}
+
+async function updateStatus(id, user, status) {
+  const item = await prisma.workItem.findUnique({ where: { id } });
+  if (!item) throw new AppError("Work item not found", 404, "NOT_FOUND");
+  
+  // Basic RBAC: the assigned user or an Admin/Project Lead can update status
+  if (item.userId !== user.id && user.role !== "ADMIN" && user.role !== "PROJECT_LEAD") {
+    throw new AppError("Not authorized to update this task", 403, "FORBIDDEN");
+  }
+
+  const updated = await prisma.workItem.update({
+    where: { id },
+    data: { 
+      status,
+      completedAt: status === "COMPLETED" ? new Date() : null,
+    },
+    include: {
+      user: { select: { id: true, name: true, avatar: true } },
+    },
+  });
+
+  await logActivity({
+    type: status === "COMPLETED" ? "WORK_COMPLETED" : "CHECK_IN",
+    message: `${user.name} marked task "${item.title}" as ${status}`,
+    actorId: user.id,
+    entityId: item.id,
+    entityType: "work_item",
+  });
+
+  return updated;
+}
+
+module.exports = { listForReview, reviewItem, listByProject, createItem, updateStatus };

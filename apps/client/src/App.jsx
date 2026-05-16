@@ -10,7 +10,8 @@ import TaskersPage from "./pages/TaskersPage";
 import TaskReviewPage from "./pages/TaskReviewPage";
 import AttendancePage from "./pages/AttendancePage";
 import LeavePage from "./pages/LeavePage";
-import ProjectsTrackPage from "./pages/ProjectsTrackPage";
+import Projects from "./pages/Projects";
+import ProjectDetail from "./pages/ProjectDetail";
 import AnalyticsPage from "./pages/AnalyticsPage";
 
 export default function App() {
@@ -35,7 +36,8 @@ export default function App() {
               <Route path="/task-review" element={<TaskReviewPage />} />
               <Route path="/attendance" element={<AttendancePage />} />
               <Route path="/leave" element={<LeavePage />} />
-              <Route path="/projects" element={<ProjectsTrackPage />} />
+              <Route path="/projects" element={<Projects />} />
+              <Route path="/projects/:id" element={<ProjectDetail />} />
               <Route path="/analytics" element={<AnalyticsPage />} />
             </Route>
             <Route path="/" element={<Navigate to="/auth" replace />} />

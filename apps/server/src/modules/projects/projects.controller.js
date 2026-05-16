@@ -16,4 +16,14 @@ const request = catchAsync(async (req, res) => {
   sendSuccess(res, { statusCode: 201, data: { project } });
 });
 
-module.exports = { list, flag, request };
+const create = catchAsync(async (req, res) => {
+  const project = await projectsService.createProject(req.user, req.body);
+  sendSuccess(res, { statusCode: 201, data: { project } });
+});
+
+const getById = catchAsync(async (req, res) => {
+  const project = await projectsService.getProjectById(req.params.id);
+  sendSuccess(res, { data: { project } });
+});
+
+module.exports = { list, flag, request, create, getById };

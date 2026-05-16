@@ -14,4 +14,19 @@ const review = catchAsync(async (req, res) => {
   sendSuccess(res, { item });
 });
 
-module.exports = { list, review };
+const listProjectItems = catchAsync(async (req, res) => {
+  const items = await service.listByProject(req.params.projectId);
+  sendSuccess(res, { items });
+});
+
+const create = catchAsync(async (req, res) => {
+  const item = await service.createItem(req.user, req.body);
+  sendSuccess(res, { statusCode: 201, data: { item } });
+});
+
+const updateStatus = catchAsync(async (req, res) => {
+  const item = await service.updateStatus(req.params.id, req.user, req.body.status);
+  sendSuccess(res, { item });
+});
+
+module.exports = { list, review, listProjectItems, create, updateStatus };

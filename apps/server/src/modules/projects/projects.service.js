@@ -77,4 +77,30 @@ async function requestProject(user, data) {
   });
 }
 
-module.exports = { listProjects, flagProject, requestProject };
+async function createProject(user, data) {
+  const code = `PRJ-${Date.now().toString().slice(-6)}`;
+  return prisma.project.create({
+    data: {
+      code,
+      title: data.title || "New Project",
+      platform: data.platform || user.platform,
+      category: data.description || data.category,
+      lifecycle: data.status || "LIVE",
+      allocationStatus: "ALLOCATED",
+      allocations: { create: [{ userId: user.id }] },
+    },
+  });
+}
+
+async function getProjectById(id) {
+  const project = await prisma.project.findUnique({
+    where: { id },
+    include: {
+      allocations: { include: { user: { select: { id: true, name: true } } } },
+    },
+  });
+  if (!project) throw new AppError("Project not found", 404, "NOT_FOUND");
+  return project;
+}
+
+module.exports = { listProjects, flagProject, requestProject, createProject, getProjectById };
