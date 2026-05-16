@@ -1,232 +1,608 @@
-# AstralHQ
+# 🚀 ETHARA AI — THE ULTIMATE AI WORKSPACE PLATFORM
 
+> **One platform. Multiple AI brains. Real-time collaboration. Production-ready architecture.**
+>
+> Welcome to **Ethara AI** — a next-generation AI workspace that combines the intelligence of multiple LLMs into a single powerful ecosystem designed for productivity, automation, collaboration, and scale.
 
+---
 
-![Dashboard placeholder](docs/screenshots/dashboard.png)
+# 🌐 LIVE DEMO
 
-## Features
+🔥 **Experience Ethara AI Live Here:**  
+👉 https://astralhq.vercel.app/
 
-- **Authentication** — JWT access tokens, httpOnly refresh cookies, bcrypt password hashing
-- **RBAC** — Admin & Member roles with route-level authorization
-- **Projects** — CRUD, member management, progress tracking
-- **Tasks** — Kanban board with drag-and-drop, priorities, deadlines
-- **Dashboard** — Stats, charts, activity feed, AI productivity insights
-- **Team** — Crew roster with task/project counts
-- **Analytics** — Priority distribution, productivity radar, deadline heatmap
-- **UX** — Command palette (⌘K), toasts, skeleton loaders, Framer Motion transitions
+---
 
-## Tech Stack
+# 🌟 WHY ETHARA AI?
 
-| Layer | Technologies |
-|-------|-------------|
-| Frontend | React 19, Vite, Tailwind CSS v4, React Router, Axios, Recharts, Framer Motion, @dnd-kit |
-| Backend | Node.js, Express 5, Prisma 6, PostgreSQL |
-| Auth | JWT, bcryptjs, express-validator |
-| Deploy | Railway (monorepo), Docker Compose (local Postgres) |
+Most AI apps stop at being “just another chatbot.”
 
-## Monorepo Structure
+**Ethara AI is different.**
 
+This platform is engineered to become an **AI Operating System** for teams, creators, developers, analysts, and businesses — combining:
+
+- 🧠 Multi-LLM Intelligence
+- ⚡ Real-Time Collaboration
+- 🔐 Enterprise-Level Authentication
+- 📂 Team Workspaces
+- 🤖 AI Automation
+- 🌐 Modern Full-Stack Architecture
+- 🚀 Scalable Cloud Deployment
+
+---
+
+# 🔥 FEATURE EXTRAVAGANZA
+
+## 🧠 Multi-AI Integration
+Connect and interact with multiple LLM providers from one unified platform.
+
+### Supported / Planned Models
+- OpenAI GPT
+- Claude
+- Gemini
+- Perplexity
+- Custom AI APIs
+
+---
+
+## 💬 Smart AI Conversations
+- Persistent chat history
+- Context-aware responses
+- Markdown rendering
+- Streaming responses
+- Multi-session chat management
+
+---
+
+## 👥 Team Collaboration
+Work together in real time.
+
+### Includes:
+- Shared workspaces
+- Team chat
+- Project collaboration
+- AI-assisted brainstorming
+- Shared prompts & templates
+
+---
+
+## ⚡ Real-Time Sync
+Powered by WebSockets for lightning-fast updates.
+
+### Real-time Features:
+- Live messaging
+- Instant updates
+- Presence indicators
+- Typing indicators
+- Team activity sync
+
+---
+
+## 🔐 Secure Authentication
+Built with production-grade authentication systems.
+
+### Security Stack:
+- JWT Authentication
+- OAuth Support
+- Secure Sessions
+- Protected APIs
+- Rate Limiting
+- Environment Variable Protection
+
+---
+
+## 📊 AI Productivity Dashboard
+Monitor everything from one central command center.
+
+### Dashboard Includes:
+- Chat analytics
+- Usage tracking
+- Team insights
+- Workspace management
+- AI request monitoring
+
+---
+
+# 🏗️ SYSTEM ARCHITECTURE
+
+```text
+                    ┌─────────────────────┐
+                    │      Frontend       │
+                    │   React + Vite      │
+                    └─────────┬──────────┘
+                              │
+                              ▼
+                    ┌─────────────────────┐
+                    │    API Gateway      │
+                    │   Express Server    │
+                    └─────────┬──────────┘
+                              │
+        ┌─────────────────────┼─────────────────────┐
+        ▼                     ▼                     ▼
+┌──────────────┐    ┌────────────────┐    ┌────────────────┐
+│ Authentication│    │ AI Integrations│    │ Real-Time Sync │
+│ JWT + OAuth   │    │ OpenAI/Claude │    │  Socket.IO     │
+└──────────────┘    └────────────────┘    └────────────────┘
+        │                     │                     │
+        └─────────────────────┼─────────────────────┘
+                              ▼
+                    ┌─────────────────────┐
+                    │      Database       │
+                    │ PostgreSQL/MongoDB  │
+                    └─────────────────────┘
 ```
-astralhq/
-├── apps/
-│   ├── client/          # React + Vite frontend
-│   └── server/          # Express API
-├── docker-compose.yml
-├── railway.json
-└── package.json         # npm workspaces
-```
 
-## Quick Start
+---
 
-### Prerequisites
+# 🛠️ TECH STACK
 
-- Node.js 20+
-- Docker (optional, for local PostgreSQL)
+## 🎨 Frontend
+- React.js
+- TypeScript
+- Vite
+- Tailwind CSS
+- Zustand / Context API
+- Axios
+- React Router
 
-### 1. Clone & install
+---
+
+## ⚙️ Backend
+- Node.js
+- Express.js
+- TypeScript
+- Socket.IO
+- JWT Authentication
+- REST APIs
+
+---
+
+## 🗄️ Database
+Choose your preferred database setup:
+
+### Option 1 — PostgreSQL
+- NeonDB
+- Railway PostgreSQL
+- Supabase
+
+### Option 2 — MongoDB
+- MongoDB Atlas
+- Local MongoDB
+
+---
+
+## ☁️ Deployment
+- Railway
+- Vercel
+- Render
+- Docker
+- Netlify
+
+---
+
+# 📂 PROJECT STRUCTURE
 
 ```bash
-git clone <repo-url> astralhq && cd astralhq
+ethara-ai/
+│
+├── client/                 # Frontend Application
+│   ├── src/
+│   │   ├── components/     # Reusable UI Components
+│   │   ├── pages/          # App Pages
+│   │   ├── hooks/          # Custom Hooks
+│   │   ├── services/       # API Calls
+│   │   ├── store/          # Global State
+│   │   └── utils/          # Utility Functions
+│
+├── server/                 # Backend Application
+│   ├── routes/             # API Routes
+│   ├── controllers/        # Business Logic
+│   ├── middleware/         # Middleware
+│   ├── models/             # Database Models
+│   ├── services/           # External Services
+│   └── sockets/            # Real-Time Events
+│
+├── shared/                 # Shared Types & Configs
+│
+├── docs/                   # Documentation
+│
+├── .env.example            # Environment Variables
+├── package.json
+└── README.md
+```
+
+---
+
+# ⚡ QUICK START
+
+## 📦 Clone the Repository
+
+```bash
+git clone https://github.com/your-username/ethara-ai.git
+cd ethara-ai
+```
+
+---
+
+## 📥 Install Dependencies
+
+```bash
 npm install
 ```
 
-### 2. Environment
+---
 
-```bash
-cp apps/client/.env.example apps/client/.env
+# 🔑 ENVIRONMENT VARIABLES
+
+Create a `.env` file in the root directory.
+
+```env
+# Server
+PORT=5000
+NODE_ENV=development
+
+# Database
+DATABASE_URL=your_database_url
+
+# JWT
+JWT_SECRET=super_secret_key
+
+# OpenAI
+OPENAI_API_KEY=your_openai_key
+
+# Claude
+CLAUDE_API_KEY=your_claude_key
+
+# Gemini
+GEMINI_API_KEY=your_gemini_key
 ```
 
-### 3. Database (choose one)
+---
 
-#### Option A — Local SQLite (recommended)
+# 🚀 RUN THE PROJECT
 
-```bash
-npm run setup:local
-```
-
-This creates `apps/server/data/dev.db`, seeds demo data, and configures the API to use SQLite.
-
-#### Option B — Postgres via Docker
-
-```bash
-cp apps/server/.env.example apps/server/.env
-npm run docker:up
-npm run db:deploy
-npm run db:seed
-```
-
-Edit `apps/server/.env` — set `JWT_ACCESS_SECRET` and `JWT_REFRESH_SECRET` (32+ chars each).
-
-### 4. Run
+## Development Mode
 
 ```bash
 npm run dev
 ```
 
-- **Frontend:** http://localhost:5173  
-- **API:** http://localhost:3000/api  
+---
 
-### Demo accounts
+## Production Build
 
-| Role | Email | Password |
-|------|-------|----------|
-| Admin | admin@astralhq.app | Admin123! |
-| Member | alex@astralhq.app | Member123! |
-
-## Environment Variables
-
-### Server (`apps/server/.env`)
-
-| Variable | Description |
-|----------|-------------|
-| `DATABASE_URL` | PostgreSQL connection string |
-| `JWT_ACCESS_SECRET` | Access token signing secret |
-| `JWT_REFRESH_SECRET` | Refresh token signing secret |
-| `JWT_ACCESS_EXPIRES_IN` | Default: `15m` |
-| `JWT_REFRESH_EXPIRES_IN` | Default: `7d` |
-| `CORS_ORIGIN` | Frontend URL(s), comma-separated in prod |
-| `COOKIE_SECURE` | `true` in production (HTTPS) |
-| `PORT` | API port (default `3000`) |
-
-For local SQLite dev, the server uses `apps/server/.env.sqlite`, which is copied automatically when you run `npm run dev` or `npm run setup:local`.
-
-### Client (`apps/client/.env`)
-
-| Variable | Description |
-|----------|-------------|
-| `VITE_API_URL` | Backend URL (empty in dev uses Vite proxy) |
-
-## API Reference
-
-Base URL: `/api`
-
-### Auth
-
-| Method | Path | Auth |
-|--------|------|------|
-| POST | `/auth/register` | — |
-| POST | `/auth/login` | — |
-| POST | `/auth/refresh` | Cookie |
-| POST | `/auth/logout` | — |
-| GET | `/auth/me` | Bearer |
-
-### Projects
-
-| Method | Path | Auth |
-|--------|------|------|
-| GET | `/projects` | Bearer |
-| POST | `/projects` | Bearer |
-| GET | `/projects/:id` | Bearer |
-| PUT | `/projects/:id` | Bearer |
-| DELETE | `/projects/:id` | Bearer |
-
-### Tasks
-
-| Method | Path | Auth |
-|--------|------|------|
-| GET | `/tasks` | Bearer |
-| POST | `/tasks` | Bearer |
-| POST | `/tasks/reorder` | Bearer |
-| GET | `/tasks/:id` | Bearer |
-| PUT | `/tasks/:id` | Bearer |
-| DELETE | `/tasks/:id` | Bearer |
-
-### Dashboard & Team
-
-| Method | Path | Auth |
-|--------|------|------|
-| GET | `/dashboard/stats` | Bearer |
-| GET | `/team` | Bearer |
-| GET | `/health` | — |
-
-## Architecture
-
-```
-┌─────────────┐     HTTPS      ┌─────────────┐
-│   React     │ ◄────────────► │   Express   │
-│   (Vite)    │   JWT + API    │   + Prisma  │
-└─────────────┘                └──────┬──────┘
-                                      │
-                               ┌──────▼──────┐
-                               │ PostgreSQL  │
-                               └─────────────┘
+```bash
+npm run build
 ```
 
-**Backend layers:** `routes` → `controllers` → `services` → Prisma  
-**Frontend:** `pages` → `components` → `lib/api` + `AuthContext`
+---
 
-## Railway Deployment
+# 🌐 DEPLOYMENT GUIDE
 
-1. Create a Railway project and connect this repo.
-2. Add **PostgreSQL** plugin — copy `DATABASE_URL` to the API service.
-3. Create two services from the monorepo:
-   - **API** — root: `apps/server`, start: `node src/index.js`
-   - **Web** — root: `apps/client`, build: `npm run build`, start: `npm run start`
-4. Set API env vars: `DATABASE_URL`, `JWT_*`, `CORS_ORIGIN` (your Railway web URL), `COOKIE_SECURE=true`, `NODE_ENV=production`
-5. Set Web env: `VITE_API_URL` = your Railway API public URL (build-time variable).
-6. Run migrations on deploy: `npx prisma migrate deploy` (included in `railway.toml` build).
+# 🚂 Railway Deployment
 
-See `railway.json` and per-app `railway.toml` for reference configs.
+## 1️⃣ Create Railway Project
+- Login to Railway
+- Create New Project
+- Connect GitHub Repository
 
-## Vercel Deployment (Full Stack)
+---
 
-This repo can be deployed as a single Vercel project. The API runs as a serverless
-function under `/api`, and the client is served from the Vite build output.
+## 2️⃣ Add Environment Variables
 
-1. Create a new Vercel project and import this repository.
-2. Vercel will use [vercel.json](vercel.json) to build the Vite client and route
-   `/api/*` to the Express app.
-3. Set these environment variables in Vercel (Production + Preview):
-   - `DATABASE_URL`
-   - `JWT_ACCESS_SECRET`
-   - `JWT_REFRESH_SECRET`
-   - `CORS_ORIGIN` = your Vercel app URL (comma-separated allowed)
-   - `COOKIE_SECURE` = `true`
-4. Optional: set `VITE_API_URL` to empty (or omit it) to use same-origin `/api`.
-5. Run migrations against your database: `npx prisma migrate deploy`.
-6. Deploy the project.
+Go to:
 
-Note: Socket.IO is not supported on Vercel serverless functions. If you need
-real-time sockets, host the API elsewhere.
+```text
+Project → Variables
+```
 
-### Railway Database (PostgreSQL)
+Add all `.env` variables.
 
-1. Create a Railway project and add a **PostgreSQL** plugin.
-2. Copy the `DATABASE_URL` from Railway.
-3. Paste it into your Vercel project env vars (Production + Preview).
-4. Run `npx prisma migrate deploy` against the Railway database.
+---
 
-## Scripts
+## 3️⃣ Deploy Backend
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start API + client concurrently |
-| `npm run build` | Build client for production |
-| `npm run db:migrate` | Dev migrations |
-| `npm run db:seed` | Seed demo data |
-| `npm run setup:local` | Set up SQLite dev database with seed data |
-| `make docker-up` | Start local Postgres |
+Railway automatically detects:
+- Node.js
+- Build Commands
+- Start Commands
 
-## License
+---
 
-ISC
+## 4️⃣ Database Setup
+
+### PostgreSQL
+```text
+Railway → Add Plugin → PostgreSQL
+```
+
+Copy the generated DATABASE_URL.
+
+---
+
+# ▲ Vercel Deployment
+
+## Deploy Frontend
+
+```bash
+npm install -g vercel
+vercel
+```
+
+---
+
+## Configure Environment Variables
+
+Inside Vercel Dashboard:
+- Add API URL
+- Add public environment variables
+
+---
+
+## Connect Backend
+
+Update frontend API base URL:
+
+```env
+VITE_API_URL=https://your-backend-url.com
+```
+
+---
+
+# 🧠 AI PROVIDER INTEGRATION
+
+## OpenAI Example
+
+```ts
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+```
+
+---
+
+## Claude Example
+
+```ts
+const anthropic = new Anthropic({
+  apiKey: process.env.CLAUDE_API_KEY,
+});
+```
+
+---
+
+# 📡 API REFERENCE
+
+# 🔑 Authentication APIs
+
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/api/auth/register` | Register User |
+| POST | `/api/auth/login` | Login User |
+| GET | `/api/auth/me` | Get Current User |
+
+---
+
+# 💬 Chat APIs
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/chats` | Get Chats |
+| POST | `/api/chats` | Create Chat |
+| POST | `/api/messages` | Send Message |
+
+---
+
+# 👥 Workspace APIs
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/api/workspaces` | Get Workspaces |
+| POST | `/api/workspaces` | Create Workspace |
+| PUT | `/api/workspaces/:id` | Update Workspace |
+
+---
+
+# 🔥 REAL-TIME EVENTS
+
+## Socket Events
+
+```text
+connect
+disconnect
+message:new
+workspace:update
+user:typing
+presence:update
+```
+
+---
+
+# 🔐 SECURITY FEATURES
+
+✅ JWT Authentication  
+✅ Password Hashing  
+✅ Environment Variable Protection  
+✅ API Validation  
+✅ Rate Limiting  
+✅ CORS Protection  
+✅ Secure Headers  
+✅ Input Sanitization  
+
+---
+
+# 🧪 TESTING
+
+## Run Tests
+
+```bash
+npm run test
+```
+
+---
+
+## Run Linting
+
+```bash
+npm run lint
+```
+
+---
+
+# 🐳 DOCKER SUPPORT
+
+## Build Docker Image
+
+```bash
+docker build -t ethara-ai .
+```
+
+---
+
+## Run Container
+
+```bash
+docker run -p 5000:5000 ethara-ai
+```
+
+---
+
+# 🐛 TROUBLESHOOTING
+
+# ❌ Environment Variables Not Working
+
+### Fix:
+- Restart server
+- Check `.env` spelling
+- Ensure variables are loaded correctly
+
+---
+
+# ❌ Database Connection Failed
+
+### Fix:
+- Verify DATABASE_URL
+- Check DB permissions
+- Ensure database is active
+
+---
+
+# ❌ CORS Errors
+
+### Fix:
+Update backend CORS config:
+
+```ts
+origin: ["http://localhost:5173"]
+```
+
+---
+
+# ❌ Build Failed on Railway
+
+### Fix:
+Ensure:
+
+```json
+"build": "npm run build"
+```
+
+exists in `package.json`.
+
+---
+
+# 📈 FUTURE ROADMAP
+
+## 🚀 Upcoming Features
+
+- AI Agents
+- Voice AI
+- AI File Analysis
+- Team Roles & Permissions
+- AI Workflow Automation
+- RAG Pipeline
+- AI Search Engine
+- Plugin Marketplace
+- Mobile App
+- AI Coding Assistant
+
+---
+
+# 🤝 CONTRIBUTING
+
+We welcome contributors from around the world.
+
+## Steps to Contribute
+
+1. Fork the Repository
+2. Create a Feature Branch
+3. Commit Changes
+4. Push to GitHub
+5. Open Pull Request
+
+---
+
+# 💡 LEARNING RESOURCES
+
+## Recommended Docs
+- React Documentation
+- Node.js Documentation
+- TypeScript Handbook
+- Socket.IO Docs
+- Railway Docs
+- Vercel Docs
+
+---
+
+# 🌍 OPEN SOURCE VISION
+
+Ethara AI is more than a project.
+
+It’s a movement toward:
+- Smarter collaboration
+- AI-powered productivity
+- Unified intelligence systems
+- Accessible AI infrastructure
+
+---
+
+# 👨‍💻 BUILT FOR BUILDERS
+
+Whether you're:
+- a developer,
+- startup founder,
+- AI engineer,
+- student,
+- researcher,
+- or innovator...
+
+**Ethara AI is built to help you create faster, smarter, and bigger.**
+
+---
+
+# ⭐ SUPPORT THE PROJECT
+
+If this project helped you:
+
+🌟 Star the repository  
+🍴 Fork the project  
+🧠 Contribute ideas  
+🚀 Share with developers  
+
+---
+
+# 📜 LICENSE
+
+MIT License © 2026 Ethara AI
+
+---
+
+# 🚀 FINAL MESSAGE
+
+> **This isn’t just another AI app.**
+>
+> Ethara AI is the foundation for the next generation of intelligent collaboration systems.
+>
+> Build boldly. Scale fearlessly. Ship faster. 💥
