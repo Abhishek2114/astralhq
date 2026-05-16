@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "installCommand": "npm install && npm run db:generate -w @astralhq/server",
+  "installCommand": "npm install && npm install -w @astralhq/client && npm run db:generate -w @astralhq/server",
   "buildCommand": "npm run build -w @astralhq/client",
   "outputDirectory": "apps/client/dist",
   "functions": {
