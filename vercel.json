@@ -8,9 +8,9 @@
       "config": { "maxDuration": 10, "runtime": "nodejs20.x" }
     },
     {
-      "src": "apps/client/package.json",
+      "src": "apps/client",
       "use": "@vercel/static-build",
-      "config": { "distDir": "dist" }
+      "config": { "distDir": "apps/client/dist" }
     }
   ],
   "routes": [
