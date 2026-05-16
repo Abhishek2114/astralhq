@@ -14,8 +14,6 @@
     "db:deploy": "npm run db:deploy -w @astralhq/server",
     "db:seed": "npm run db:seed -w @astralhq/server",
     "db:studio": "npm run db:studio -w @astralhq/server",
-    "docker:up": "docker compose up -d postgres",
-    "docker:down": "docker compose down",
     "setup:local": "npm run setup:local -w @astralhq/server",
     "demo": "npm run setup:local && concurrently \"npm run dev:local -w @astralhq/server\" \"npm run dev -w @astralhq/client\""
   },
