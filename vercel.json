@@ -1,18 +1,14 @@
 {
   "version": 2,
   "installCommand": "npm install && npm install -w @astralhq/client && npm run db:generate -w @astralhq/server",
-  "builds": [
-    {
-      "src": "api/index.js",
-      "use": "@vercel/node",
-      "config": { "maxDuration": 10, "runtime": "nodejs20.x" }
-    },
-    {
-      "src": "apps/client",
-      "use": "@vercel/static-build",
-      "config": { "distDir": "apps/client/dist" }
+  "buildCommand": "npm run build -w @astralhq/client",
+  "outputDirectory": "apps/client/dist",
+  "functions": {
+    "api/index.js": {
+      "runtime": "nodejs20.x",
+      "maxDuration": 10
     }
-  ],
+  },
   "routes": [
     { "src": "/api/(.*)", "dest": "/api/index.js" },
     { "handle": "filesystem" },
